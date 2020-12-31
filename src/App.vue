@@ -1,49 +1,14 @@
 <template>
   <div id="app">
-    {{ user.username }} - {{ fulName }} <strong>Followers: </strong>
-    {{ followers }}
-    <button @click="followUser">Follow</button>
+    <UserProfile />
   </div>
 </template>
 
 <script>
+import UserProfile from "./components/UserProfile";
 export default {
   name: "App",
-  data() {
-    return {
-      followers: 0,
-      user: {
-        id: 1,
-        username: "@_GulRecep",
-        firstName: "Recep",
-        lastName: "Gül",
-        email: "gulrecep29@icloud.com",
-        isAdmin: true,
-      },
-    };
-  },
-  watch: {
-    followers(newFollowerCount, oldFollowerCount) {
-      if (oldFollowerCount < newFollowerCount) {
-        console.log(`${this.fulName} takipçin arttı`);
-      }
-    },
-  },
-  computed: {
-    fulName() {
-      return `${this.user.firstName} ${this.user.lastName}`;
-    },
-  },
-
-  methods: {
-    followUser() {
-      this.followers++;
-    },
-  },
-  //bileşen ilk kez yüklendiğinde otomatik çalışır (onInit)
-  mounted() {
-    this.followUser();
-  },
+  components: { UserProfile },
 };
 </script>
 
